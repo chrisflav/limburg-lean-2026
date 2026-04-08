@@ -12,4 +12,6 @@ import Limburg.Lectures.NilradicalLiveVersion
 import Limburg.Solutions.Nilpotent
 import Limburg.Topics.ChineseRemainder
 import Limburg.Topics.FundamentalGroup
+import Limburg.Topics.Pure
+import Limburg.Topics.WeakDimension
 import Limburg.Topics.ZariskiTopology
