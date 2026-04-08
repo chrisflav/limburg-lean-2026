@@ -1,7 +1,7 @@
-name = "UuGeometry2025"
+name = "Limburg"
 version = "0.1.0"
 keywords = ["math"]
-defaultTargets = ["UuGeometry2025"]
+defaultTargets = ["Limburg"]
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
@@ -15,4 +15,4 @@ name = "mathlib"
 scope = "leanprover-community"
 
 [[lean_lib]]
-name = "UuGeometry2025"
+name = "Limburg"

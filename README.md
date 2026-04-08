@@ -18,10 +18,10 @@ so make sure that you copy your code from time to time to a local file.
 
 Links to sections:
 
-- [Introduction](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FUuGeometry2025%2FLectures%2F01Introduction.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GFY5V7NVIQMCYIO2RK2E6N5KQ)
-- [Logic and Sets](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FUuGeometry2025%2FLectures%2F02Logic.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GERGSQJM4UB4W3TY7Q2E6N6NA) ([Exercises](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FUuGeometry2025%2FExercises%2F02Logic.lean))
-- [Analysis](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FUuGeometry2025%2FLectures%2F03Analysis.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GEZLM2CN3N7J4PBOVQ2E6N7OA) ([Exercises](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FUuGeometry2025%2FExercises%2F03Analysis.lean))
-- [Algebra](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FUuGeometry2025%2FLectures%2F04Algebra.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GFWCRY2GNOYJQKGZPS2E6N74A) ([Exercises](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FUuGeometry2025%2FExercises%2F04Algebra.lean))
+- [Introduction](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FLimburg%2FLectures%2F01Introduction.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GFY5V7NVIQMCYIO2RK2E6N5KQ)
+- [Logic and Sets](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FLimburg%2FLectures%2F02Logic.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GERGSQJM4UB4W3TY7Q2E6N6NA) ([Exercises](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FLimburg%2FExercises%2F02Logic.lean))
+- [Analysis](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FLimburg%2FLectures%2F03Analysis.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GEZLM2CN3N7J4PBOVQ2E6N7OA) ([Exercises](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FLimburg%2FExercises%2F03Analysis.lean))
+- [Algebra](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FLimburg%2FLectures%2F04Algebra.lean%3Ftoken%3DGHSAT0AAAAAACW4X3GFWCRY2GNOYJQKGZPS2E6N74A) ([Exercises](https://live.lean-lang.org/#url=https%3A%2F%2Fraw.githubusercontent.com%2Fformal-methods-nl%2Fuu-geometry-2025%2Frefs%2Fheads%2Fmaster%2FLimburg%2FExercises%2F04Algebra.lean))
 
 ## Local installation
 
@@ -40,7 +40,7 @@ https://github.com/formal-methods-nl/uu-geometry-2025
 After selecting a path where the project should be installed on your computer, wait for a few minutes
 for everything to download and compile.
 
-You will find the course material in the `UuGeometry2025` directory.
+You will find the course material in the `Limburg` directory.
 
 ## Useful links
 
