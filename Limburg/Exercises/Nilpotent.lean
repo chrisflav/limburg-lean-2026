@@ -3,7 +3,7 @@ Copyright (c) 2026 Christian Merten. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
-import Limburg.Lectures.Nilradical
+import Mathlib
 
 /-!
 # Exercises on nilpotent elements
@@ -16,9 +16,150 @@ is a unit and all other coefficients are nilpotent.
 -- This enables the notation `R[X]` for the polynomial ring in one variable.
 open Polynomial
 
-namespace Playground
+namespace ExercisePlayground
 
 variable {R : Type} [CommRing R]
+
+section AlreadyCovered
+
+/-- An element `x` of a ring `R` is nilpotent if there exists `n : ℕ` such that `x ^ n = 0`. -/
+def Nilpotent (x : R) : Prop :=
+  ∃ n : ℕ, x ^ n = 0
+
+/-- `0` is nilpotent. -/
+@[simp]
+theorem Nilpotent.zero : Nilpotent (0 : R) := by
+  use 1
+  simp
+
+/-- If `x` is nilpotent, also `a * x` is nilpotent for every `a : R`. -/
+theorem Nilpotent.mul_left {x : R} (hx : Nilpotent x) (a : R) : Nilpotent (a * x) := by
+  obtain ⟨n, hn⟩ := hx
+  use n
+  simp [mul_pow, hn]
+
+/-- The sum of two nilpotent elements is nilpotent. -/
+theorem Nilpotent.add {x y : R} (hx : Nilpotent x) (hy : Nilpotent y) : Nilpotent (x + y) := by
+  obtain ⟨n, hn⟩ := hx
+  obtain ⟨m, hm⟩ := hy
+  use n + m
+  rw [add_pow]
+  apply Finset.sum_eq_zero
+  intro k hk
+  by_cases h : k ≤ n
+  · have : n + m - k = m + (n - k) := by grind
+    simp [this, pow_add, hm]
+  · have : k = n + (k - n) := by grind
+    rw [this, pow_add, hn]
+    simp
+
+variable (R) in
+/-- The set of nilpotent elements forms an ideal: The nilradical of `R`. -/
+def nilradical : Ideal R where
+  carrier := { x | Nilpotent x }
+  zero_mem' := by simp
+  add_mem' {x y} hx hy := Nilpotent.add hx hy
+  smul_mem' a _ hx := Nilpotent.mul_left hx a
+
+-- Lean's syntax is extensible: Let us introduce a notation `𝒩(R)` for the nilradical.
+notation3 "𝒩(" R ")" => nilradical R
+
+-- We can extend Lean's automation by declaring a theorem as a simplification rule.
+-- This means it will later be used by `simp` and `grind`.
+@[simp, grind =]
+theorem mem_nilradical_iff (x : R) : x ∈ 𝒩(R) ↔ Nilpotent x := by
+  rfl
+
+/-- Any prime ideal `p` contains the nilradical. -/
+theorem le_of_isPrime (p : Ideal R) [p.IsPrime] :
+    𝒩(R) ≤ p := by
+  intro x hx
+  obtain ⟨n, hn⟩ := hx
+  exact Ideal.IsPrime.mem_of_pow_mem ‹_› n (by simp [hn])
+
+/-
+The following two lemmas will be useful in the next proof, let's ignore them for now.
+-/
+
+theorem Ideal.sup_mul_sup_le_sup_left (I J K : Ideal R) : (I ⊔ J) * (I ⊔ K) ≤ I ⊔ J * K := by
+  rw [Ideal.sup_mul, sup_le_iff]
+  refine ⟨le_trans Ideal.mul_le_right le_sup_left, ?_⟩
+  rw [Ideal.mul_sup]
+  exact sup_le_sup Ideal.mul_le_left le_rfl
+
+theorem Ideal.sup_mul_sup_le_sup_right (I J K : Ideal R) : (J ⊔ I) * (K ⊔ I) ≤ J * K ⊔ I := by
+  grw [sup_comm J I, sup_comm K I, Ideal.sup_mul_sup_le_sup_left, sup_comm]
+
+attribute [grind] Nilpotent
+
+/-- The nilradical of `R` is the intersection of all prime ideals of `R`. -/
+theorem nilradical_eq_sInf :
+    𝒩(R) = sInf { p : Ideal R | p.IsPrime } := by
+  apply le_antisymm
+  · rw [le_sInf_iff]
+    intro p hp
+    dsimp at hp
+    apply le_of_isPrime
+  · intro x hx
+    contrapose! hx
+    let 𝒮 : Set (Ideal R) :=
+      { I | ∀ n : ℕ, x ^ n ∉ I }
+    have h0 : 0 ∈ 𝒮 := by
+      simp [𝒮]
+      grind
+    obtain ⟨p, hle, ⟨hmem, hmax⟩⟩ : ∃ p : Ideal R, 0 ≤ p ∧ Maximal (· ∈ 𝒮) p := by
+      apply zorn_le_nonempty₀ 𝒮 _ 0 h0
+      intro c hc hchain y hy
+      use sSup c
+      constructor
+      · intro n
+        rw [Submodule.mem_sSup_of_directed]
+        · simp only [not_exists, not_and]
+          tauto
+        · use y
+        · exact IsChain.directedOn hchain
+      · intro z hz
+        exact le_sSup hz
+    suffices hp : Ideal.IsPrime p by
+      simp only [Submodule.mem_sInf, Set.mem_setOf_eq, not_forall]
+      use p, hp
+      rw [← pow_one x]
+      apply hmem
+    have H (y : R) (hy : y ∉ p) : ∃ n, x ^ n ∈ p ⊔ Ideal.span {y} := by
+      suffices h : p ⊔ Ideal.span {y} ∉ 𝒮 by
+        simp [𝒮] at h
+        grind
+      by_contra
+      have := hmax this le_sup_left
+      simp at this
+      contradiction
+    constructor
+    · intro rfl
+      simpa using hmem 1
+    · intro r s hrs
+      contrapose! hrs
+      have h : p ⊔ Ideal.span {r * s} ∉ 𝒮 := by
+        obtain ⟨k, hk⟩ := H r hrs.1
+        obtain ⟨m, hm⟩ := H s hrs.2
+        have : (p ⊔ Ideal.span {r}) * (p ⊔ Ideal.span {s}) ≤ p ⊔ Ideal.span {r * s} := by
+          grw [Ideal.sup_mul_sup_le_sup_left, Ideal.span_mul_span, Set.singleton_mul_singleton]
+        simp [𝒮]
+        use k + m
+        rw [pow_add]
+        apply this
+        exact Ideal.mul_mem_mul hk hm
+      intro hc
+      apply h
+      convert hmem
+      simpa
+
+/-- An element `x` is nilpotent if and only if it is contained in every prime ideal. -/
+lemma nilpotent_iff_mem_of_isPrime {x : R} :
+    Nilpotent x ↔ ∀ p : Ideal R, p.IsPrime → x ∈ p := by
+  rw [← mem_nilradical_iff, nilradical_eq_sInf]
+  simp
+
+end AlreadyCovered
 
 /-- If `x` is nilpotent, also `-x` is nilpotent. -/
 lemma Nilpotent.neg {x : R} (hx : Nilpotent x) : Nilpotent (-x) :=
@@ -103,4 +244,4 @@ theorem Polynomial.isUnit_iff {P : R[X]} :
     IsUnit P ↔ IsUnit (P.coeff 0) ∧ (∀ i ≠ 0, Nilpotent (P.coeff i)) := by
   sorry
 
-end Playground
+end ExercisePlayground
