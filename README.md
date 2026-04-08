@@ -4,6 +4,9 @@ This is the repository for a one-day workshop on Formalising Mathematics in Lean
 held in Limburg on April 9, 2026.
 It contains the workshop material, including lectures, exercises and project sketches.
 
+The concept of this repository is heavily inspired by Patrick Massot's
+[Glimpse of Lean](https://github.com/PatrickMassot/GlimpseOfLean).
+
 ## Before the workshop
 
 To get started with Lean, we recommend to play a few worlds of the
@@ -43,6 +46,18 @@ for everything to download and compile.
 You will find the workshop material in the `Limburg` directory.
 
 ## Useful links
+
+### References
+
+You might find any of these references useful:
+
+- [Cheat sheet](https://github.com/PatrickMassot/GlimpseOfLean/blob/master/tactics.pdf): Brief overview
+  of most relevant Lean tactics.
+- [Mathematics in Lean](https://leanprover-community.github.io/mathematics_in_lean/): Text book
+  on formalising mathematics, focussed on using `mathlib`.
+- [Theorem Proving in Lean](https://leanprover.github.io/theorem_proving_in_lean4/): More foundational
+  textbook on formalisation in Lean, independent of `mathlib`.
+- [Language reference](https://lean-lang.org/doc/reference/latest/): Technical reference for Lean.
 
 ### Searching the library
 
