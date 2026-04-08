@@ -8,6 +8,7 @@ import Limburg.Lectures.Analysis
 import Limburg.Lectures.EvenNumbersIntro
 import Limburg.Lectures.Logic
 import Limburg.Lectures.Nilradical
+import Limburg.Lectures.NilradicalLiveVersion
 import Limburg.Solutions.Nilpotent
 import Limburg.Topics.ChineseRemainder
 import Limburg.Topics.FundamentalGroup
