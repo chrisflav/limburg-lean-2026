@@ -3,7 +3,7 @@ Copyright (c) 2025 Christian Merten. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
-import Mathlib
+import Limburg.Lectures.«04Algebra»
 
 /-!
 # Exercises for algebraic structures and typeclasses
@@ -12,7 +12,7 @@ In the following exercises, you will construct the integers as a quotient
 of pairs of natural numbers and show it is a commutative ring.
 -/
 
-namespace Playground
+namespace NewPlayground
 
 /-- Two pairs `x = (a, b)` and `y = (u, v)` are equivalent if `a + v = u + b`. -/
 def Rel (x y : ℕ × ℕ) : Prop :=
@@ -109,4 +109,4 @@ lemma Int.mul_assoc (x y z : Int) : x * y * z = x * (y * z) :=
 Now show that `Int` is a commutative ring by defining a `CommRing Int` instance.
 -/
 
-end Playground
+end NewPlayground

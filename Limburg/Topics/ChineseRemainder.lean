@@ -357,8 +357,10 @@ sums and `Finset.sum_univ_eq_single` which allows to rewrite this sum under the 
 is non-zero only for a single element of `ι`.
 -/
 
-lemma chineseMap_surjective [Fintype ι] {I : ι → Ideal R} (hI : ∀ i j, i ≠ j → I i + I j = 1) :
+lemma chineseMap_surjective [Finite ι] {I : ι → Ideal R} (hI : ∀ i j, i ≠ j → I i + I j = 1) :
     Surjective (chineseMap I) := by
+  -- Some preparations required related to classical vs. constructive mathematics
+  cases nonempty_fintype ι
   classical
   intro g
   -- The role of the `choose` tactic should be clear if you compare the tactic state before and

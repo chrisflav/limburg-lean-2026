@@ -88,7 +88,8 @@ example {x y z : ℝ} (hxy : x ≤ y) (hyz : y ≤ z) : x ≤ z := by
 We can find lemma names by using the library search tactic `exact?`.
 -/
 /--
-info: Try this: exact abs_add_le x y
+info: Try this:
+  [apply] exact abs_add_le x y
 -/
 #guard_msgs in
 example (x y : ℝ) : |x + y| ≤ |x| + |y| := by

@@ -257,7 +257,6 @@ i.e. a function `p : α → Prop`. The idea is that for some `x : α`,
 We denote the type of all such functions by `Set α`.
 If we regard `α` as iteslf being a set, then the type `Set α`
 is the power set of `α`. -/
-
 def Set (α : Type*) := (α → Prop)
 
 variable {α : Type*}

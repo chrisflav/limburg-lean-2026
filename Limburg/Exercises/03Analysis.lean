@@ -3,7 +3,7 @@ Copyright (c) 2025 Christian Merten. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Christian Merten
 -/
-import Mathlib
+import Limburg.Lectures.«03Analysis»
 
 /-!
 # Exercises for real analysis and linear arithmetic
@@ -81,24 +81,6 @@ example (x y : ℝ) : |x| < y ↔ -y < x ∧ x < y := by
 end CaseSplitting
 
 section Convergence
-
-/--
-The sequence `a : ℕ → ℝ` converges to `x : ℝ` if for every `ε > 0`,
-there exists `n₀ : ℕ` such that for all `n ≥ n₀`, `|x - a n| ≤ ε`.
--/
-def ConvergesTo (a : ℕ → ℝ) (x : ℝ) : Prop :=
-  ∀ ε > 0, ∃ (n₀ : ℕ), ∀ n ≥ n₀, |x - a n| ≤ ε
-
-/--
-The sequence `a : ℕ → ℝ` is bounded if there exists a constant `M : ℝ` such that
-`|a n| ≤ M` for all `M`.
--/
-def Bounded (a : ℕ → ℝ) : Prop :=
-  ∃ (M : ℝ), ∀ n, |a n| ≤ M
-
-lemma bounded_iff (a : ℕ → ℝ) :
-    Bounded a ↔ ∃ (M : ℝ), ∀ n, |a n| ≤ M := by
-  rfl
 
 /-- Every constant sequence is bounded. Prove this directly using the definition! -/
 lemma Bounded.const (x : ℝ) : Bounded (fun _ ↦ x) := by
