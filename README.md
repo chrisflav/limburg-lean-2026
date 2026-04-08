@@ -1,8 +1,8 @@
 # One-day Workshop on Formalising Mathematics in Lean
 
-This is the repository for the one-day workshop on Formalising Mathematics in Lean
-as part of the Summer School on Geometry held at Utrecht University on August 15, 2025.
-It contains the course material, including lectures, exercises and project sketches.
+This is the repository for a one-day workshop on Formalising Mathematics in Lean
+held in Limburg on April 9, 2026.
+It contains the workshop material, including lectures, exercises and project sketches.
 
 ## Before the workshop
 
@@ -12,7 +12,7 @@ some basic concepts of a proof assistant.
 
 ## Online Lean usage
 
-To follow the course, you don't necessarily need a local Lean installation. Instead,
+To follow the workshop, you don't necessarily need a local Lean installation. Instead,
 you can use the [online Lean editor](https://live.lean-lang.org/). Beware that your progress is not saved there,
 so make sure that you copy your code from time to time to a local file.
 
@@ -35,12 +35,12 @@ Now, open VS Code and click on the forall symbol on the right hand side of the s
 
 There will appear a text box, in which you copy the following URL:
 ```
-https://github.com/formal-methods-nl/uu-geometry-2025
+https://github.com/chrisflav/limburg-lean-2026
 ```
 After selecting a path where the project should be installed on your computer, wait for a few minutes
 for everything to download and compile.
 
-You will find the course material in the `Limburg` directory.
+You will find the workshop material in the `Limburg` directory.
 
 ## Useful links
 
@@ -56,5 +56,4 @@ Finding the right lemmas to use is hard. These websites can help you find what y
 ### Connecting with the community
 
 - [Zulip chat](https://leanprover.zulipchat.com/): A discussion forum for Lean users. If you have any
-  questions about Lean, feel free to ask them there.
-- [Loki](https://formal-methods.nl/loki): Weekly formalisation meetup in Utrecht.
+  questions about Lean or formalisation, feel free to ask them there.
