@@ -48,11 +48,19 @@ theorem Nilpotent.zero : Nilpotent (0 : R) := by
   or the goal. The basic procedure of a Lean proof is to apply a sequence
   of tactics that step by step prove the goal.
   -/
-  sorry
+  unfold Nilpotent
+  use 1
+  simp only [pow_one]
 
 /-- If `x` is nilpotent, also `a * x` is nilpotent for every `a : R`. -/
 theorem Nilpotent.mul_left {x : R} (hx : Nilpotent x) (a : R) : Nilpotent (a * x) := by
-  sorry
+  unfold Nilpotent
+  unfold Nilpotent at hx
+  obtain ⟨n, hn⟩ := hx
+  use n
+  rw [mul_pow]
+  rw [hn]
+  simp
 
 /-
 The following lemma is slightly trickier!
@@ -60,7 +68,22 @@ The following lemma is slightly trickier!
 
 /-- The sum of two nilpotent elements is nilpotent. -/
 theorem Nilpotent.add {x y : R} (hx : Nilpotent x) (hy : Nilpotent y) : Nilpotent (x + y) := by
-  sorry
+  unfold Nilpotent at hx hy ⊢
+  obtain ⟨n, hn⟩ := hx
+  obtain ⟨m, hm⟩ := hy
+  use n + m
+  nth_rw 1 [add_pow]
+  apply Finset.sum_eq_zero
+  intro i hi
+  by_cases hasdf : i ≤ n
+  · have : n + m - i = m + (n - i) := by
+      grind
+    rw [this, pow_add, hm]
+    ring
+  · have : i = n + (i - n) := by
+      grind
+    rw [this, pow_add, hn]
+    simp
 
 /-
 Now we want to package everything up: The set of nilpotent elements of `R` forms
@@ -78,8 +101,23 @@ To specify an ideal, we use the `where` syntax and provide these four fields.
 
 variable (R) in
 /-- The set of nilpotent elements forms an ideal: The nilradical of `R`. -/
-def nilradical : Ideal R :=
-  sorry
+def nilradical : Ideal R where
+  carrier := { x : R | Nilpotent x }
+  add_mem' := by
+    intro a b ha hb
+    simp
+    simp at ha
+    simp at hb
+    apply Nilpotent.add
+    · apply ha
+    · apply hb
+  zero_mem' := by
+    apply Nilpotent.zero
+  smul_mem' := by
+    intro c x hx
+    simp
+    have := Nilpotent.mul_left hx c
+    apply this
 
 -- Lean's syntax is extensible: Let us introduce a notation `𝒩(R)` for the nilradical.
 notation3 "𝒩(" R ")" => nilradical R
@@ -88,7 +126,11 @@ notation3 "𝒩(" R ")" => nilradical R
 -- This means it will later be used by `simp` and `grind`.
 @[simp, grind =]
 theorem mem_nilradical_iff (x : R) : x ∈ 𝒩(R) ↔ Nilpotent x := by
-  sorry
+  constructor
+  · intro hx
+    apply hx
+  · intro hx
+    apply hx
 
 /-- Any prime ideal `p` contains the nilradical. -/
 theorem le_of_isPrime (p : Ideal R) [p.IsPrime] :
