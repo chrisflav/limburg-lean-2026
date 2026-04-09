@@ -11,6 +11,7 @@ weak.linter.mathlibStandardSet = true
 maxSynthPendingDepth = 3
 weak.linter.flexible = false
 weak.linter.hashCommand = false
+backward.isDefEq.respectTransparency = false
 
 [[require]]
 name = "mathlib"

@@ -6,6 +6,7 @@ import Limburg.Exercises.Nilpotent
 import Limburg.Lectures.Algebra
 import Limburg.Lectures.Analysis
 import Limburg.Lectures.EvenNumbersIntro
+import Limburg.Lectures.IntegralBaseChange
 import Limburg.Lectures.Logic
 import Limburg.Lectures.Nilradical
 import Limburg.Lectures.NilradicalLiveVersion
